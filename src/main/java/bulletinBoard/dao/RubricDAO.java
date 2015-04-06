@@ -1,6 +1,6 @@
-package bulletinBoard.dao;
+package bulletinboard.dao;
 
-import bulletinBoard.model.Rubric;
+import bulletinboard.model.Rubric;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -9,6 +9,7 @@ import org.w3c.dom.NodeList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,8 +19,12 @@ public class RubricDAO {
 
         List<Rubric> rubrics = new ArrayList<Rubric>();
         try {
-
-            File fXmlFile = new File("src/main/resources/rubrics.xml");
+            URL xmlUrl = AdvertDAO.class.getClassLoader().getResource("rubrics.xml");
+            if (xmlUrl == null) {
+                System.err.println("Could not find rubrics.xml file");
+                return rubrics;
+            }
+            File fXmlFile = new File(xmlUrl.toURI());
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = dbFactory.newDocumentBuilder();
             Document doc = builder.parse(fXmlFile);

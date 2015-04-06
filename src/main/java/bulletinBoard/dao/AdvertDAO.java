@@ -1,6 +1,6 @@
-package bulletinBoard.dao;
+package bulletinboard.dao;
 
-import bulletinBoard.model.Advert;
+import bulletinboard.model.Advert;
 import com.google.gson.Gson;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -20,28 +20,40 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.*;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AdvertDAO {
+    private static File fXmlFile;
+    private static File advertsJsonFile;
+
+    static {
+        URL xmlUrl = AdvertDAO.class.getClassLoader().getResource("adverts.xml");
+        URL jsonUrl = AdvertDAO.class.getClassLoader().getResource("adverts.json");
+        if (xmlUrl != null && jsonUrl != null) {
+            try {
+                fXmlFile = new File(xmlUrl.toURI());
+                advertsJsonFile = new File(jsonUrl.toURI());
+            } catch (URISyntaxException e) {
+                System.err.println(e.getMessage());
+            }
+        } else {
+            System.err.println("Could not find adverts.xml or adverts.json files");
+        }
+    }
 
     public List<Advert> getAdvertsFromXML() {
-
         List<Advert> adverts = new ArrayList<Advert>();
         try {
-            File fXmlFile = new File("src/main/resources/adverts.xml");
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document doc = builder.parse(fXmlFile);
-
             doc.getDocumentElement().normalize();
-
             NodeList nList = doc.getElementsByTagName("advert");
-
             for (int temp = 0; temp < nList.getLength(); temp++) {
-
                 Node nNode = nList.item(temp);
-
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                     adverts.add(getAdvertFromXML((Element) nNode));
                 }
@@ -52,14 +64,11 @@ public class AdvertDAO {
         return adverts;
     }
 
-
     public void saveAllAdvertsToXML(List<Advert> adverts) {
-
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document doc = builder.newDocument();
-
             Element root = doc.createElement("adverts");
             doc.appendChild(root);
 
@@ -92,29 +101,25 @@ public class AdvertDAO {
 
             TransformerFactory tranFactory = TransformerFactory.newInstance();
             Transformer aTransformer = tranFactory.newTransformer();
-
             aTransformer.setOutputProperty(OutputKeys.ENCODING, "ISO-8859-1");
-
             aTransformer.setOutputProperty(
                     "{http://xml.apache.org/xslt}indent-amount", "4");
             aTransformer.setOutputProperty(OutputKeys.INDENT, "yes");
 
             DOMSource source = new DOMSource(doc);
             try {
-                FileWriter fos = new FileWriter("src/main/resources/adverts.xml");
+                FileWriter fos = new FileWriter(fXmlFile);
                 StreamResult result = new StreamResult(fos);
                 aTransformer.transform(source, result);
-
             } catch (IOException e) {
-
                 e.printStackTrace();
             }
 
         } catch (TransformerException ex) {
-            System.out.println("Error outputting document");
+            System.err.println("Error outputting document");
 
         } catch (ParserConfigurationException ex) {
-            System.out.println("Error building document");
+            System.err.println("Error building document");
         }
     }
 
@@ -124,9 +129,7 @@ public class AdvertDAO {
         FileOutputStream outputStream;
 
         try {
-            File file = new File("src/main/resources/adverts.json");
-
-            outputStream = new FileOutputStream(file);
+            outputStream = new FileOutputStream(advertsJsonFile);
             outputStream.write(jsonAdverts.getBytes());
             outputStream.close();
         } catch (Exception e) {
@@ -140,7 +143,7 @@ public class AdvertDAO {
 
         try {
             JSONParser parser = new JSONParser();
-            JSONArray jsonArray = (JSONArray) parser.parse(new FileReader("src/main/resources/adverts.json"));
+            JSONArray jsonArray = (JSONArray) parser.parse(new FileReader(advertsJsonFile));
 
             for (Object object : jsonArray) {
                 adverts.add(getAdvertFromJSON((JSONObject) object));
@@ -155,35 +158,33 @@ public class AdvertDAO {
 
     private Advert getAdvertFromJSON(JSONObject object) {
         Advert advert = new Advert();
-        JSONObject jsonObject = (JSONObject) object;
 
-        String stringId = String.valueOf(jsonObject.get("id"));
+        String stringId = String.valueOf(object.get("id"));
 
         advert.setId(Integer.parseInt(stringId));
 
-        String stringUserId = String.valueOf(jsonObject.get("userId"));
+        String stringUserId = String.valueOf(object.get("userId"));
         advert.setUserId(Integer.parseInt(stringUserId));
 
-        advert.setPublicationDate(String.valueOf(jsonObject.get("publicationDate")));
+        advert.setPublicationDate(String.valueOf(object.get("publicationDate")));
 
-        String stringRubricId = String.valueOf(jsonObject.get("rubricId"));
+        String stringRubricId = String.valueOf(object.get("rubricId"));
         advert.setRubricId(Integer.parseInt(stringRubricId));
 
-        advert.setText(String.valueOf(jsonObject.get("text")));
+        advert.setText(String.valueOf(object.get("text")));
 
-        advert.setTitle(String.valueOf(jsonObject.get("title")));
+        advert.setTitle(String.valueOf(object.get("title")));
         return advert;
     }
 
     private Advert getAdvertFromXML(Element nNode) {
-        Element eElement = (Element) nNode;
         Advert advert = new Advert();
-        advert.setId(Integer.parseInt(eElement.getAttribute("id")));
-        advert.setUserId(Integer.parseInt(eElement.getElementsByTagName("userId").item(0).getTextContent()));
-        advert.setPublicationDate(eElement.getElementsByTagName("publicationDate").item(0).getTextContent());
-        advert.setRubricId(Integer.parseInt(eElement.getElementsByTagName("rubricId").item(0).getTextContent()));
-        advert.setTitle(eElement.getElementsByTagName("title").item(0).getTextContent());
-        advert.setText(eElement.getElementsByTagName("text").item(0).getTextContent());
+        advert.setId(Integer.parseInt(nNode.getAttribute("id")));
+        advert.setUserId(Integer.parseInt(nNode.getElementsByTagName("userId").item(0).getTextContent()));
+        advert.setPublicationDate(nNode.getElementsByTagName("publicationDate").item(0).getTextContent());
+        advert.setRubricId(Integer.parseInt(nNode.getElementsByTagName("rubricId").item(0).getTextContent()));
+        advert.setTitle(nNode.getElementsByTagName("title").item(0).getTextContent());
+        advert.setText(nNode.getElementsByTagName("text").item(0).getTextContent());
         return advert;
     }
 }

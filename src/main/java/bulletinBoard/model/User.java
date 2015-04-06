@@ -1,9 +1,8 @@
-package bulletinBoard.model;
+package bulletinboard.model;
 
 public class User {
-
-    private String userName;
     private int id;
+    private String userName;
 
     public int getId() {
         return id;

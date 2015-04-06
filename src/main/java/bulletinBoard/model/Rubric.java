@@ -1,8 +1,8 @@
-package bulletinBoard.model;
+package bulletinboard.model;
 
 public class Rubric {
-    private String name;
     private int id;
+    private String name;
 
     public String getName() {
         return name;

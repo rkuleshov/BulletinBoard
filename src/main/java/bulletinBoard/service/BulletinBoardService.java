@@ -1,9 +1,9 @@
-package bulletinBoard.service;
+package bulletinboard.service;
 
-import bulletinBoard.dao.AdvertDAO;
-import bulletinBoard.dao.UserDAO;
-import bulletinBoard.model.Advert;
-import bulletinBoard.model.User;
+import bulletinboard.dao.AdvertDAO;
+import bulletinboard.dao.UserDAO;
+import bulletinboard.model.Advert;
+import bulletinboard.model.User;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -11,15 +11,12 @@ import java.util.List;
 import java.util.Scanner;
 
 public class BulletinBoardService {
-
-    AdvertService advertService = new AdvertService();
-    RubricService rubricService = new RubricService();
-    InputValidation inputValidation = new InputValidation();
-    AdvertDAO advertDAO = new AdvertDAO();
-    UserDAO userDAO = new UserDAO();
-
-    User user = new User();
-
+    private AdvertService advertService = new AdvertService();
+    private RubricService rubricService = new RubricService();
+    private InputValidation inputValidation = new InputValidation();
+    private AdvertDAO advertDAO = new AdvertDAO();
+    private UserDAO userDAO = new UserDAO();
+    private User user = new User();
     private List<User> users = userDAO.getAllUsers();
     private List<Advert> adverts = advertService.getAdverts();
 
@@ -48,8 +45,7 @@ public class BulletinBoardService {
                 number = in.nextInt();
             } catch (InputMismatchException e) {
                 correctNumberFlag = false;
-                System.out.println("You must enter a digit");
-
+                System.err.println("You must enter a digit");
             }
         }
         while (!correctNumberFlag || !inputValidation.isCorrectInput(number, 1, 5));
@@ -58,7 +54,6 @@ public class BulletinBoardService {
     }
 
     public void displayUserAdverts() {
-
         List<Advert> advertsByUser = new ArrayList<Advert>();
         if (users.contains(user)) {
             System.out.println("Your adverts:");
@@ -112,14 +107,13 @@ public class BulletinBoardService {
                 number = in.nextInt();
             } catch (InputMismatchException e) {
                 correctNumberFlag = false;
-                System.out.println("You must enter a digit");
+                System.err.println("You must enter a digit");
                 in.next();
             }
         }
         while (!inputValidation.isCorrectInput(number, 1, 4) || !correctNumberFlag);
 
         return number;
-
     }
 
     public void displayCurrentAdvert(List<Advert> advertsByUser) {
@@ -131,11 +125,9 @@ public class BulletinBoardService {
             int advertId = 0;
             correctNumberFlag = true;
             try {
-
-
                 advertId = in.nextInt();
             } catch (InputMismatchException e) {
-                System.out.println("You must enter a digit");
+                System.err.println("You must enter a digit");
                 correctNumberFlag = false;
                 in.next();
             }
@@ -148,9 +140,7 @@ public class BulletinBoardService {
         }
         while (!correctNumberFlag || currentAdvert == null);
         System.out.println(currentAdvert);
-
         performAdvertOption(currentAdvert, getNumberOfAdvertOption());
-
     }
 
     public void displayByUser() {
@@ -166,14 +156,11 @@ public class BulletinBoardService {
                 Scanner in = new Scanner(System.in);
                 authorNumber = in.nextInt();
             } catch (InputMismatchException e) {
-                System.out.println("You must enter a digit");
+                System.err.println("You must enter a digit");
                 correctNumberFlag = false;
             }
-
-
         }
         while (!correctNumberFlag || !inputValidation.isCorrectInput(authorNumber, 1, users.size()));
-
 
         for (User user : users) {
             if (authorNumber == user.getId()) {
@@ -207,9 +194,7 @@ public class BulletinBoardService {
                 programExit();
                 break;
         }
-
     }
-
 
     public void start() {
         login();
@@ -251,6 +236,5 @@ public class BulletinBoardService {
         userDAO.saveAllUsers(users);
         advertDAO.saveAllAdvertsToJSON(adverts);
         System.exit(0);
-
     }
 }

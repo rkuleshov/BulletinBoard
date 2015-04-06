@@ -1,6 +1,6 @@
-package bulletinBoard;
+package bulletinboard;
 
-import bulletinBoard.service.BulletinBoardService;
+import bulletinboard.service.BulletinBoardService;
 
 public class Main {
     public static void main(String args[]) {

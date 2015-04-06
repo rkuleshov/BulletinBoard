@@ -1,13 +1,11 @@
-package bulletinBoard.service;
+package bulletinboard.service;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class InputValidation {
-
     //checks whether the number is included in the specified range
     public boolean isCorrectInput (int inputNumber, int minNumber, int maxNumber){
-
         boolean isCorrectNumber = false;
         if(inputNumber < minNumber || inputNumber > maxNumber){
             isCorrectNumber = false;
@@ -26,7 +24,6 @@ public class InputValidation {
         }
         return false;
     }
-
 
     public boolean isContainsNonLatinCharacters(String string) {
         Pattern p = Pattern.compile("\\W");

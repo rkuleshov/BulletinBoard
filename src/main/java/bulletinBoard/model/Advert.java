@@ -1,13 +1,24 @@
-package bulletinBoard.model;
+package bulletinboard.model;
 
 public class Advert {
-
     private int userId;
-    private String publicationDate;
     private int rubricId;
     private int id;
+    private String publicationDate;
     private String title;
     private String text;
+
+    public Advert(int userId, int rubricId, int id, String publicationDate, String title, String text) {
+        this.userId = userId;
+        this.rubricId = rubricId;
+        this.id = id;
+        this.publicationDate = publicationDate;
+        this.title = title;
+        this.text = text;
+    }
+
+    public Advert() {
+    }
 
     public int getUserId() {
         return userId;

@@ -1,26 +1,24 @@
-package bulletinBoard.service;
+package bulletinboard.service;
 
-import bulletinBoard.dao.AdvertDAO;
-import bulletinBoard.dao.RubricDAO;
-import bulletinBoard.model.Advert;
-import bulletinBoard.model.Rubric;
-import bulletinBoard.model.User;
+import bulletinboard.dao.AdvertDAO;
+import bulletinboard.dao.RubricDAO;
+import bulletinboard.model.Advert;
+import bulletinboard.model.Rubric;
+import bulletinboard.model.User;
+
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class AdvertService {
-
-    AdvertDAO advertDAO = new AdvertDAO();
-    InputValidation inputValidation = new InputValidation();
-
-    private List<Advert> adverts;
+    private List<Advert> adverts = null;
+    private AdvertDAO advertDAO = new AdvertDAO();
+    private InputValidation inputValidation = new InputValidation();
 
     public List<Advert> getAdverts() {
         return adverts;
     }
 
     public AdvertService() {
-
         selectFileType();
     }
 
@@ -36,7 +34,7 @@ public class AdvertService {
             try {
                 number = in.nextInt();
             } catch (InputMismatchException e) {
-                System.out.println("You must enter a digit");
+                System.err.println("You must enter a digit");
                 correctNumberFlag = false;
                 in.next();
             }
@@ -45,7 +43,6 @@ public class AdvertService {
         while (!correctNumberFlag || !inputValidation.isCorrectInput(number, 1, 2));
 
         switch (number) {
-
             case 1:
                 adverts = advertDAO.getAdvertsFromXML();
                 break;
@@ -56,7 +53,6 @@ public class AdvertService {
     }
 
     public void displayAdvertsByRubricId(int numberOfRubric) {
-
         System.out.println("Adverts in rubric");
         System.out.println("");
         for (Advert advert : adverts) {
@@ -140,7 +136,7 @@ public class AdvertService {
         advert.setText(getText());
         advert.setPublicationDate(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime()));
 
-        if(!users.contains(user)){
+        if (!users.contains(user)) {
             users.add(user);
         }
         adverts.add(advert);
@@ -189,11 +185,10 @@ public class AdvertService {
 
                 rubricId = in.nextInt();
             } catch (InputMismatchException e) {
-                System.out.println("You must enter a digit");
+                System.err.println("You must enter a digit");
                 correctNumberFlag = false;
                 in.next();
             }
-
         }
         while (!correctNumberFlag || !inputValidation.isCorrectInput(rubricId, 1, rubrics.size()));
         return rubricId;
