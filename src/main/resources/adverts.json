@@ -1,0 +1,82 @@
+[
+    {
+        "userId": 1,
+        "publicationDate": "2015/04/06 12:43:45",
+        "rubricId": 1,
+        "id": 1,
+        "title": "Selling Lada Calina",
+        "text": "Selling Lada Calina. Green color. Poor condition. Price: $ 2000"
+    },
+    {
+        "userId": 1,
+        "publicationDate": "2015/04/06 12:47:49",
+        "rubricId": 1,
+        "id": 2,
+        "title": "Selling Lada Priora",
+        "text": "Selling Lada Priora. Black color. Good condition. Price: $ 3000"
+    },
+    {
+        "userId": 1,
+        "publicationDate": "2015/04/06 12:52:44",
+        "rubricId": 2,
+        "id": 3,
+        "title": "Rent an apartment",
+        "text": "Rent an apartment. Good condition, 3 bedrooms. "
+    },
+    {
+        "userId": 2,
+        "publicationDate": "2015/04/06 12:54:19",
+        "rubricId": 3,
+        "id": 4,
+        "title": "Selling phone",
+        "text": "Selling phone. Great condition. Bought 2 years ago"
+    },
+    {
+        "userId": 2,
+        "publicationDate": "2015/04/06 12:55:52",
+        "rubricId": 4,
+        "id": 5,
+        "title": "Selling broom.",
+        "text": "Selling broom. Great condition. Bought 10 years ago"
+    },
+    {
+        "userId": 2,
+        "publicationDate": "2015/04/06 12:57:27",
+        "rubricId": 3,
+        "id": 6,
+        "title": "Selling TV",
+        "text": "Selling TV. Poor condition. Bought 1 year ago"
+    },
+    {
+        "userId": 3,
+        "publicationDate": "2015/04/06 12:59:00",
+        "rubricId": 2,
+        "id": 7,
+        "title": "Rent a house",
+        "text": "Rent a house. Renovation, good condition. 6 rooms. Urgent!"
+    },
+    {
+        "userId": 3,
+        "publicationDate": "2015/04/06 13:00:40",
+        "rubricId": 4,
+        "id": 8,
+        "title": "Selling lawnmower",
+        "text": "Selling lawnmower. normal state. bought 3 years ago. careful use"
+    },
+    {
+        "userId": 1,
+        "publicationDate": "2015/04/06 13:06:11",
+        "rubricId": 1,
+        "id": 9,
+        "title": "Selling Ferrari",
+        "text": "Selling ferrari. Great car!!. Red color!. Mileage 10 000 km"
+    },
+    {
+        "userId": 1,
+        "publicationDate": "2015/04/06 13:07:45",
+        "rubricId": 3,
+        "id": 10,
+        "title": "Selling laptop Lenovo",
+        "text": "Selling laptop Lenovo. Very bad laptop, I do not like. I do not advise to buy"
+    }
+]

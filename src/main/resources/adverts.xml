@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<adverts>
+    <advert id="1">
+        <userId>1</userId>
+        <publicationDate>2015/04/06 12:43:45</publicationDate>
+        <rubricId>1</rubricId>
+        <title>Selling Lada Calina</title>
+        <text>Selling Lada Calina. Green color. Poor condition. Price: $ 2000</text>
+    </advert>
+    <advert id="2">
+        <userId>1</userId>
+        <publicationDate>2015/04/06 12:47:49</publicationDate>
+        <rubricId>1</rubricId>
+        <title>Selling Lada Priora</title>
+        <text>Selling Lada Priora. Black color. Good condition. Price: $ 3000</text>
+    </advert>
+    <advert id="3">
+        <userId>1</userId>
+        <publicationDate>2015/04/06 12:52:44</publicationDate>
+        <rubricId>2</rubricId>
+        <title>Rent an apartment</title>
+        <text>Rent an apartment. Good condition, 3 bedrooms. </text>
+    </advert>
+    <advert id="4">
+        <userId>2</userId>
+        <publicationDate>2015/04/06 12:54:19</publicationDate>
+        <rubricId>3</rubricId>
+        <title>Selling phone</title>
+        <text>Selling phone. Great condition. Bought 2 years ago</text>
+    </advert>
+    <advert id="5">
+        <userId>2</userId>
+        <publicationDate>2015/04/06 12:55:52</publicationDate>
+        <rubricId>4</rubricId>
+        <title>Selling broom.</title>
+        <text>Selling broom. Great condition. Bought 10 years ago</text>
+    </advert>
+    <advert id="6">
+        <userId>2</userId>
+        <publicationDate>2015/04/06 12:57:27</publicationDate>
+        <rubricId>3</rubricId>
+        <title>Selling TV</title>
+        <text>Selling TV. Poor condition. Bought 1 year ago</text>
+    </advert>
+    <advert id="7">
+        <userId>3</userId>
+        <publicationDate>2015/04/06 12:59:00</publicationDate>
+        <rubricId>2</rubricId>
+        <title>Rent a house</title>
+        <text>Rent a house. Renovation, good condition. 6 rooms. Urgent!</text>
+    </advert>
+    <advert id="8">
+        <userId>3</userId>
+        <publicationDate>2015/04/06 13:00:40</publicationDate>
+        <rubricId>4</rubricId>
+        <title>Selling lawnmower</title>
+        <text>Selling lawnmower. normal state. bought 3 years ago. careful use</text>
+    </advert>
+    <advert id="9">
+        <userId>1</userId>
+        <publicationDate>2015/04/06 13:06:11</publicationDate>
+        <rubricId>1</rubricId>
+        <title>Selling Ferrari</title>
+        <text>Selling ferrari. Great car!!. Red color!. Mileage 10 000 km</text>
+    </advert>
+    <advert id="10">
+        <userId>1</userId>
+        <publicationDate>2015/04/06 13:07:45</publicationDate>
+        <rubricId>3</rubricId>
+        <title>Selling laptop Lenovo</title>
+        <text>Selling laptop Lenovo. Very bad laptop, I do not like. I do not advise to buy</text>
+    </advert>
+</adverts>

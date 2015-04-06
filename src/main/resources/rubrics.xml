@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<rubrics>
+    <rubric>
+        <name>Cars</name>
+        <id>1</id>
+    </rubric>
+    <rubric>
+        <name>Rental of property</name>
+        <id>2</id>
+    </rubric>
+    <rubric>
+        <name>Electronics</name>
+        <id>3</id>
+    </rubric>
+    <rubric>
+        <name>House and garden</name>
+        <id>4</id>
+    </rubric>
+</rubrics>
